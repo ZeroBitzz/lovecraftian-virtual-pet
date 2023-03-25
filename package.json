@@ -1,0 +1,29 @@
+{
+  "name": "lovecraftian-virtual-pet",
+  "version": "1.0.0",
+  "description": "Do you want a pet without all the responsibility of taking care of a biological lifeform? Then you have arrived at the right place.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZeroBitzz/lovecraftian-virtual-pet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZeroBitzz/lovecraftian-virtual-pet/issues"
+  },
+  "homepage": "https://github.com/ZeroBitzz/lovecraftian-virtual-pet#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0"
+  }
+}
