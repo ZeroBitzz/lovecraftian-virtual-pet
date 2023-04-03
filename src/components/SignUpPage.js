@@ -1,10 +1,26 @@
-import React from "react";
+import React from "react"
+import { Link } from "react-router-dom"
 
 function SignUp() {
-  return <h1>signup page</h1>;
+    return (
+        <div>
+                        <Link to="/">
+                <button>go back</button>
+            </Link>
+            <form onSubmit={(e) => {
+                alert('you have signed up')
+                e.preventDefault()
+                }}>
+                <input type="text" placeholder="username"/>
+                <input type="password" placeholder="password"/>
+                <input type="password" placeholder="repeat password"/>
+                <button type="submit">sign up</button>
+            </form>
+        </div>
+    )
 }
 
-export default SignUp;
+export default SignUp
 
 // import * as React from 'react';
 // import Avatar from '@mui/material/Avatar';

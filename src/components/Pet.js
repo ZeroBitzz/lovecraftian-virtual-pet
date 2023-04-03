@@ -1,10 +1,10 @@
-import React from "react";
+import React from "react"
 
-function LoginPage() {
-  return <h1>login page</h1>;
+function Pet() {
+    return <h1>pet page</h1>
 }
 
-export default LoginPage;
+export default Pet
 
 // import * as React from "react"
 // import Avatar from "@mui/material/Avatar"
