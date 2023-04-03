@@ -1,7 +1,18 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 function Pet() {
-    return <h1>pet page</h1>
+    return (
+        <div>
+            <container className="pet-container" >
+                <Link to="/">
+                  <button>logout</button>
+              </Link>
+                <img src="/pet-models/cthulhu/cthulhu-evo-3.svg" alt="cthulhu" className="pet-model"/>
+                <img src="/pet-models/cthulhu/cthulhu-background.svg" alt="cthulhu background" className="pet-background"/>
+            </container>
+        </div>
+    )
 }
 
 export default Pet

@@ -28,7 +28,7 @@ function HomePage() {
                     <input type="text" placeholder="username" />
                     <input type="password" placeholder="password" />
                 </form>
-                <Link to="/login">
+                <Link to="/pet">
                     <button className="login-button">LOGIN</button>
                 </Link>
               
