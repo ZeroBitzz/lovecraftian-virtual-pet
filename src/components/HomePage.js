@@ -24,7 +24,7 @@ function HomePage() {
 
             {/* second half of page containing login and sign up form */}
             <container className="login-signup-container" >
-                <form className="login-form">
+                <form>
                     <input type="text" placeholder="username" />
                     <input type="password" placeholder="password" />
                 </form>

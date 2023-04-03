@@ -23,6 +23,11 @@ input {
   opacity: 1;
 }
 
+input {
+  display: flex;
+  flex-direction: column;
+}
+
 /* HomePage.js styling */
 .h1-container {
   display: flex;
@@ -33,11 +38,6 @@ input {
 .title-logo-container {
   display: flex;
   flex-direction: row;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
 }
 
 .login-signup-container {
@@ -112,6 +112,25 @@ input {
   height: 100%;
 }
 
+/* SignUpPage.js styling */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10%;
+}
+
+.submit-signup-button {
+  margin-top: 10px;
+  height: 30px;
+  font-size: 22px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
 
 /* animations */
 @keyframes passive {
