@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 // todo: make breakpoint to split horizontally for mobile
+// todo: make forgot password option if have time
 
 function HomePage() {
     return (
