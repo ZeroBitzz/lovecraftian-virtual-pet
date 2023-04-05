@@ -4,6 +4,9 @@ body {
   color: #00FF83;
   font-family: fantasy;
   /* overflow: hidden; */
+}::selection {
+  background: rgb(43, 0, 100);
+  color: #9bffa4;
 }
 
 button {
@@ -145,6 +148,7 @@ input {
 }
 .pet-display-container:hover {
   background-color: #000048;
+  color: crimson;
   cursor: pointer;
 }
 
