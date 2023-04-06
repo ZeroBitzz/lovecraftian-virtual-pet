@@ -28,7 +28,6 @@
     "start-server": "node server/server.js",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "eject": "react-scripts eject"
-
   },
   "eslintConfig": {
     "extends": [

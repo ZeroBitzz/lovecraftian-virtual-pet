@@ -44,3 +44,30 @@ exports.login = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+
+
+// GET User Id
+exports.getUserId = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findById(userId);
+
+    res.json({ user });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+
+
+// GET All users
+exports.getAllUsers = async (req, res) => {
+  try {
+      const users = await User.find({});
+    res.json({ users });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
