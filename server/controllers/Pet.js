@@ -17,6 +17,31 @@ function verifyToken(req, res, next) {
   }
 }
 
+// Get All Pets
+const getPets = async (req, res) => {
+  try {
+    const pets = await Pet.find();
+    res.status(200).json({ pets });
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+};
+
+// Get One Pet
+const getPetById = async (req, res) => {
+  try {
+    const pet = await Pet.findById(
+      { _id: req.params.id },
+    );
+    if (!pet) {
+      return res.status(404).json({ msg: 'Pet not found' });
+    }
+    res.status(200).json({ pet });
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+};
+
 // Create a pet
 const postPet=(verifyToken, async (req, res) => {
   const { name, hunger, sleep,cleanliness,evolutionStage } = req.body;
@@ -37,8 +62,6 @@ const postPet=(verifyToken, async (req, res) => {
 
 // Update a pet
 const putPet = async (req, res) => {
-  console.log("Hello")
-  console.log(req.params.id)
   try {
     const pet = await Pet.findOneAndUpdate(
       { _id: req.params.id },
@@ -54,20 +77,25 @@ const putPet = async (req, res) => {
   }
 };
 
+//Delete Pet by Id
+const deletePet = async (req, res) => {
+  try {
+    const pet = await Pet.findByIdAndDelete(req.params.id);
+    if (!pet) {
+      return res.status(404).json({ msg: 'Pet not found' });
+    }
+    res.status(200).json({ msg: 'Pet deleted successfully' });
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+};
 
 module.exports = router;
-
-
-//TODO const getPet
-
-//TODO const putPet
-
-
-
-
 
 module.exports = {
  postPet,
  putPet,
-//  getPetById
+ getPets,
+ getPetById,
+ deletePet
 };
