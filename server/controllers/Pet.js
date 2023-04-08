@@ -37,8 +37,6 @@ const postPet=(verifyToken, async (req, res) => {
 
 // Update a pet
 const putPet = async (req, res) => {
-  console.log("Hello")
-  console.log(req.params.id)
   try {
     const pet = await Pet.findOneAndUpdate(
       { _id: req.params.id },
