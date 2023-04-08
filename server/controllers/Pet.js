@@ -2,8 +2,7 @@ const Pet = require('../models/Pet');
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const config = require('../config/connection');
-
+const config = require('../../config/connection');
 
 // Middleware to verify token
 function verifyToken(req, res, next) {
@@ -36,6 +35,26 @@ const postPet=(verifyToken, async (req, res) => {
   }
 });
 
+// Update a pet
+const putPet = async (req, res) => {
+  console.log("Hello")
+  console.log(req.params.id)
+  try {
+    const pet = await Pet.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: req.body },
+      { new: true }
+    );
+    if (!pet) {
+      return res.status(404).json({ msg: 'Pet not found' });
+    }
+    res.status(200).json({ pet });
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+};
+
+
 module.exports = router;
 
 
@@ -48,5 +67,7 @@ module.exports = router;
 
 
 module.exports = {
- postPet
+ postPet,
+ putPet,
+//  getPetById
 };
