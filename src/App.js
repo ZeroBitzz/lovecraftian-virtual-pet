@@ -6,8 +6,6 @@ import Pet from "./components/Pet"
 import PetPicker from "./components/PetPicker"
 
 function App() {
-
-
     return (
         <BrowserRouter>
             <Routes>
