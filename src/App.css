@@ -114,6 +114,7 @@ input {
   font-size: 20px;
   margin-top: 10px;
   margin-left: 10px;
+  z-index: 60;
 }
 
 .pet-status-span {
