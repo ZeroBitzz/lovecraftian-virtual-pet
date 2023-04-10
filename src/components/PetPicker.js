@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 function PetPicker() {
     return (
@@ -8,22 +9,14 @@ function PetPicker() {
                 <container className="pet-display-container">
                     <span className="catalog-title-span">Cthulhu</span>
                     <div>
-                        <img
-                            src="/pet-models/cthulhu/cthulhu-evo-1.svg"
-                            alt="cthulhu"
-                            className="cthulhu-catalog"
-                        />
+                        <img src="/pet-models/cthulhu/cthulhu-evo-1.svg" alt="cthulhu" className="cthulhu-catalog"/>
                     </div>
                 </container>
 
                 <container className="pet-display-container">
                     <span className="catalog-title-span">Azathoth</span>
                     <div>
-                        <img
-                            src="/pet-models/azathoth/azathoth-evo-1.svg"
-                            alt="azathoth"
-                            className="azathoth-catalog"
-                        />
+                        <img src="/pet-models/azathoth/azathoth-evo-1.svg" alt="azathoth" className="azathoth-catalog"/>
                     </div>
                 </container>
 
