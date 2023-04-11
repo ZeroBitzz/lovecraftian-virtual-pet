@@ -4,19 +4,33 @@ function PetPicker() {
     return (
         <div className="pet-catalog-page">
             <h1 className="pet-catalog-title-h1">Pick a Pet</h1>
-            <container className="pet-catalog">
-                <container className="pet-display-container">
-                    <span className="catalog-title-span">Cthulhu</span>
-                    <div>
-                        <img
-                            src="/pet-models/cthulhu/cthulhu-evo-1.svg"
-                            alt="cthulhu"
-                            className="cthulhu-catalog"
-                        />
+            <form className="pet-catalog">
+                <button
+                    onClick={(e) => {
+                        localStorage.setItem("userPet", {
+                            petType: 1,
+                            evoPoints: 2,
+                            hunger: 3,
+                            happiness: 3,
+                            sleep: 2,
+                            health: 4,
+                        })
+                        console.log(`userPet updated to cthulhu`)
+                    }}
+                >
+                    <div className="pet-display-container">
+                        <span className="catalog-title-span">Cthulhu</span>
+                        <div>
+                            <img
+                                src="/pet-models/cthulhu/cthulhu-evo-1.svg"
+                                alt="cthulhu"
+                                className="cthulhu-catalog"
+                            />
+                        </div>
                     </div>
-                </container>
+                </button>
 
-                <container className="pet-display-container">
+                <div className="pet-display-container">
                     <span className="catalog-title-span">Azathoth</span>
                     <div>
                         <img
@@ -25,15 +39,8 @@ function PetPicker() {
                             className="azathoth-catalog"
                         />
                     </div>
-                </container>
-
-                {/* <container className="pet-display-container">
-                    <span>Hastur</span>
-                    <div>
-                        <img src="/pet-models/cthulhu/cthulhu-evo-1.svg" alt="cthulhu" className="catalog-pet"/>
-                    </div>
-                </container> */}
-            </container>
+                </div>
+            </form>
         </div>
     )
 }

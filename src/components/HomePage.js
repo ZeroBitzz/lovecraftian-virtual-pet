@@ -4,16 +4,6 @@ import { Link } from "react-router-dom"
 // todo: make breakpoint to split horizontally for mobile
 // todo: make forgot password option if have time
 
-// mock token function
-function onLogin() {
-    console.log("logging in")
-    const token = { token: "randomToken.fknadsfpcoiewarhfaxnbc;lk123" }
-    localStorage.setItem("token", token)
-    return {
-        token,
-    }
-}
-
 function HomePage() {
     return (
         <div>
@@ -36,9 +26,9 @@ function HomePage() {
                         <input type="text" placeholder="username" />
                         <input type="password" placeholder="password" />
                     </form>
-                    <button className="login-button" onClick={onLogin}>
-                        LOGIN
-                    </button>
+                    <Link to="/pet">
+                        <button className="login-button">LOGIN</button>
+                    </Link>
 
                     <span className="no-acc-span">No Account?</span>
                     <Link to="/signup">
