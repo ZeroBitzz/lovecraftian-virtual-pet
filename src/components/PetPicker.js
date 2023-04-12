@@ -1,5 +1,16 @@
 import React from "react"
 
+function userPet(petType){
+    return {
+        petType: petType,
+        evoPoints: 2,
+        hunger: 3,
+        happiness: 3,
+        sleep: 2,
+        health: 4,
+    }
+}
+
 function PetPicker() {
     return (
         <div className="pet-catalog-page">
@@ -7,15 +18,7 @@ function PetPicker() {
             <form className="pet-catalog">
                 <button
                     onClick={(e) => {
-                        localStorage.setItem("userPet", {
-                            petType: 1,
-                            evoPoints: 2,
-                            hunger: 3,
-                            happiness: 3,
-                            sleep: 2,
-                            health: 4,
-                        })
-                        console.log(`userPet updated to cthulhu`)
+                        localStorage.setItem("userPet", JSON.stringify(userPet(1)))
                     }}
                 >
                     <div className="pet-display-container">
@@ -31,14 +34,20 @@ function PetPicker() {
                 </button>
 
                 <div className="pet-display-container">
-                    <span className="catalog-title-span">Azathoth</span>
-                    <div>
-                        <img
-                            src="/pet-models/azathoth/azathoth-evo-1.svg"
-                            alt="azathoth"
-                            className="azathoth-catalog"
-                        />
-                    </div>
+                    <button
+                        onClick={(e) => {
+                            localStorage.setItem("userPet", JSON.stringify(userPet(2)))
+                        }}
+                    >
+                        <span className="catalog-title-span">Azathoth</span>
+                        <div>
+                            <img
+                                src="/pet-models/azathoth/azathoth-evo-1.svg"
+                                alt="azathoth"
+                                className="azathoth-catalog"
+                            />
+                        </div>
+                    </button>
                 </div>
             </form>
         </div>
