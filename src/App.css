@@ -162,7 +162,7 @@ input {
   margin-left: 20%;
   margin-top: .5%;
   z-index: 20;
-  animation-name: passive;
+  animation-name: idle;
   animation-duration: 2s;
   animation-iteration-count: infinite;
 }
@@ -250,7 +250,7 @@ input {
 }
 
 /* animations */
-@keyframes passive {
+@keyframes idle {
   0% {margin-top: .5%;}
   50% {margin-top: 1%;}
   100% {margin-top: .5%;}
