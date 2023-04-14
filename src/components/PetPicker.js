@@ -1,5 +1,6 @@
 import React from "react"
 
+// mock function for the backend call to get the users chosen pet with its stats
 function userPet(petType) {
     return {
         petType: petType,
@@ -10,13 +11,14 @@ function userPet(petType) {
     }
 }
 
+// PetPicker.js component that logs the chosen pet to the local storage and when server is setup it will also log it to the backend
 function PetPicker() {
     return (
         <div className="pet-catalog-page">
             <h1 className="pet-catalog-title-h1">Pick a Pet</h1>
             <form className="pet-catalog">
-                <div className="pet-display-container">
                     <button
+                    className="pet-display-button"
                         onClick={(e) => {
                             localStorage.setItem(
                                 "userPet",
@@ -33,10 +35,9 @@ function PetPicker() {
                             />
                         </div>
                     </button>
-                </div>
 
-                <div className="pet-display-container">
                     <button
+                    className="pet-display-button"
                         onClick={(e) => {
                             localStorage.setItem(
                                 "userPet",
@@ -53,7 +54,6 @@ function PetPicker() {
                             />
                         </div>
                     </button>
-                </div>
             </form>
         </div>
     )

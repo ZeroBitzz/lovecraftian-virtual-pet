@@ -3,17 +3,49 @@ import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import PetPicker from "./PetPicker"
 
+// TODO add animation for leveling up
+// TODO add animation for eating
+// TODO add animation for sleeping
+// TODO add animation for activity
+
 // function that emulates a fetch to the backend that returns an empty object
 function getPet(pet = null) {
     return pet
 }
 
-let userPetType
+// conditional that checks if there is already a pet in local storage
 if (!localStorage.getItem("userPet")) {
-    localStorage.setItem("userPet", getPet())
+  localStorage.setItem("userPet", getPet())
 }
-const t = setInterval(agePet, 3000)
+
+let userPetType
 let newPetObj
+
+// sets the interval for aging the pet
+const t = setInterval(agePet, 3000)
+
+// function that evolves the pet
+function levelCheck(pet){
+  if(pet.petType === 1){
+    if(pet.evoPoints > 10){
+      document.getElementById("pet-model").src = `/pet-models/cthulhu/cthulhu-evo-3.svg`
+    }else if(pet.evoPoints <= 10 && pet.evoPoints > 5){
+      document.getElementById("pet-model").src = `/pet-models/cthulhu/cthulhu-evo-2.svg`
+    }else{
+      document.getElementById("pet-model").src = `/pet-models/cthulhu/cthulhu-evo-1.svg`
+    }
+  }else if(pet.petType === 2){
+    if(pet.evoPoints > 10){
+      document.getElementById("pet-model").src = `/pet-models/azathoth/azathoth-evo-3.svg`
+    }else if(pet.evoPoints <= 10 && pet.evoPoints > 5){
+      document.getElementById("pet-model").src = `/pet-models/azathoth/azathoth-evo-2.svg`
+    }else {
+      document.getElementById("pet-model").src = `/pet-models/azathoth/azathoth-evo-1.svg`
+    }
+  }
+}
+
+// age pet function that decreases the statuses of the pet and adds evo points
 function agePet() {
     if (localStorage.getItem("userPet").toString() !== "null") {
         console.log("decrementing pet")
@@ -45,11 +77,13 @@ function agePet() {
             document.getElementById(
                 "evo-points-span"
             ).innerHTML = `EVOLUTION POINTS: ${newPetObj.evoPoints}`
+            levelCheck(newPetObj)
         }
         localStorage.setItem("userPet", JSON.stringify(newPetObj))
     }
 }
 
+// function that increases pet happiness
 function petActivity() {
     if (localStorage.getItem("userPet").toString() !== "null") {
         newPetObj = JSON.parse(localStorage.getItem("userPet"))
@@ -67,6 +101,7 @@ function petActivity() {
     }
 }
 
+// function that increases pet hunger
 function feedPet() {
     if (localStorage.getItem("userPet").toString() !== "null") {
         newPetObj = JSON.parse(localStorage.getItem("userPet"))
@@ -84,6 +119,7 @@ function feedPet() {
     }
 }
 
+// function that increases pet sleep
 function sleepPet() {
     if (localStorage.getItem("userPet").toString() !== "null") {
         newPetObj = JSON.parse(localStorage.getItem("userPet"))
@@ -101,10 +137,11 @@ function sleepPet() {
     }
 }
 
+// main pet function
 function Pet() {
+    // loading screen for fetching to the backend
     const [loading, setLoading] = useState(false)
     useEffect(() => {
-        console.log(userPetType + " localstorage pet type") //getPet
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
@@ -113,22 +150,23 @@ function Pet() {
 
     return (
         <div>
+          {/* if the data has not loaded, display the loading screen */}
             {loading ? (
                 <div className="loader-container">
                     <div className="spinner"></div>
                 </div>
             ) : (
+              // when the data loads it displays the chosen pet
                 <div>
-                    {/* this part sees if the user has a pet, if it does, display it, otherwise let user pick a pet */}
+                    {/* this part sees if the user has a pet, if it does, display it, otherwise let user pick a pet with the PetPicker.js component */}
                     {localStorage.getItem("userPet").toString() === "null" ? (
                         <div>
-                            {console.log(`no pet`)}
                             <PetPicker />
                         </div>
                     ) : (
                         <container className="pet-container">
-                            {console.log(`loaded pet`)}
                             <Link to="/">
+                              {/* logout button that brings you back to the HomePage.js */}
                                 <button
                                     className="logout-button"
                                     onClick={(e) => {
@@ -138,15 +176,16 @@ function Pet() {
                                     logout
                                 </button>
                             </Link>
+                            {/* background and pet model image that displays dynamically to whichever pet was chosen in PetPicker.js using a ternary */}
                             <img
                                 src={
                                     JSON.parse(localStorage.getItem("userPet"))
                                         .petType === 1
-                                        ? `/pet-models/cthulhu/cthulhu-evo-3.svg`
-                                        : `/pet-models/azathoth/azathoth-evo-3.svg`
+                                        ? `/pet-models/cthulhu/cthulhu-evo-1.svg`
+                                        : `/pet-models/azathoth/azathoth-evo-1.svg`
                                 }
                                 alt="virtual pet"
-                                className="pet-model"
+                                id="pet-model"
                             />
                             <img
                                 src={
@@ -158,6 +197,7 @@ function Pet() {
                                 alt="cthulhu background"
                                 className="pet-background"
                             />
+                            {/* pet statuses */}
                             <container className="pet-statuses-container">
                                 <span
                                     className="pet-status-span happiness-span"
@@ -196,6 +236,8 @@ function Pet() {
                                     %
                                 </span>
                             </container>
+
+                            {/* pet options for statuses(will animate next) */}
                             <container className="pet-options">
                                 <button
                                     onClick={(e) => {
