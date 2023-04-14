@@ -17,43 +17,43 @@ function PetPicker() {
         <div className="pet-catalog-page">
             <h1 className="pet-catalog-title-h1">Pick a Pet</h1>
             <form className="pet-catalog">
-                    <button
+                <button
                     className="pet-display-button"
-                        onClick={(e) => {
-                            localStorage.setItem(
-                                "userPet",
-                                JSON.stringify(userPet(1))
-                            )
-                        }}
-                    >
-                        <span className="catalog-title-span">Cthulhu</span>
-                        <div>
-                            <img
-                                src="/pet-models/cthulhu/cthulhu-evo-1.svg"
-                                alt="cthulhu"
-                                className="cthulhu-catalog"
-                            />
-                        </div>
-                    </button>
+                    onClick={(e) => {
+                        localStorage.setItem(
+                            "userPet",
+                            JSON.stringify(userPet(1))
+                        )
+                    }}
+                >
+                    <span className="catalog-title-span">Cthulhu</span>
+                    <div>
+                        <img
+                            src="/pet-models/cthulhu/cthulhu-evo-1.svg"
+                            alt="cthulhu"
+                            className="cthulhu-catalog"
+                        />
+                    </div>
+                </button>
 
-                    <button
+                <button
                     className="pet-display-button"
-                        onClick={(e) => {
-                            localStorage.setItem(
-                                "userPet",
-                                JSON.stringify(userPet(2))
-                            )
-                        }}
-                    >
-                        <span className="catalog-title-span">Azathoth</span>
-                        <div>
-                            <img
-                                src="/pet-models/azathoth/azathoth-evo-1.svg"
-                                alt="azathoth"
-                                className="azathoth-catalog"
-                            />
-                        </div>
-                    </button>
+                    onClick={(e) => {
+                        localStorage.setItem(
+                            "userPet",
+                            JSON.stringify(userPet(2))
+                        )
+                    }}
+                >
+                    <span className="catalog-title-span">Azathoth</span>
+                    <div>
+                        <img
+                            src="/pet-models/azathoth/azathoth-evo-1.svg"
+                            alt="azathoth"
+                            className="azathoth-catalog"
+                        />
+                    </div>
+                </button>
             </form>
         </div>
     )
