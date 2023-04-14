@@ -1,13 +1,12 @@
 import React from "react"
 
-function userPet(petType){
+function userPet(petType) {
     return {
         petType: petType,
-        evoPoints: 2,
-        hunger: 3,
-        happiness: 3,
-        sleep: 2,
-        health: 4,
+        evoPoints: 0,
+        hunger: 100,
+        happiness: 100,
+        sleep: 100,
     }
 }
 
@@ -16,12 +15,15 @@ function PetPicker() {
         <div className="pet-catalog-page">
             <h1 className="pet-catalog-title-h1">Pick a Pet</h1>
             <form className="pet-catalog">
-                <button
-                    onClick={(e) => {
-                        localStorage.setItem("userPet", JSON.stringify(userPet(1)))
-                    }}
-                >
-                    <div className="pet-display-container">
+                <div className="pet-display-container">
+                    <button
+                        onClick={(e) => {
+                            localStorage.setItem(
+                                "userPet",
+                                JSON.stringify(userPet(1))
+                            )
+                        }}
+                    >
                         <span className="catalog-title-span">Cthulhu</span>
                         <div>
                             <img
@@ -30,13 +32,16 @@ function PetPicker() {
                                 className="cthulhu-catalog"
                             />
                         </div>
-                    </div>
-                </button>
+                    </button>
+                </div>
 
                 <div className="pet-display-container">
                     <button
                         onClick={(e) => {
-                            localStorage.setItem("userPet", JSON.stringify(userPet(2)))
+                            localStorage.setItem(
+                                "userPet",
+                                JSON.stringify(userPet(2))
+                            )
                         }}
                     >
                         <span className="catalog-title-span">Azathoth</span>
