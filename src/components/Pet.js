@@ -15,34 +15,46 @@ function getPet(pet = null) {
 
 // conditional that checks if there is already a pet in local storage
 if (!localStorage.getItem("userPet")) {
-  localStorage.setItem("userPet", getPet())
+    localStorage.setItem("userPet", getPet())
 }
 
 let userPetType
 let newPetObj
 
 // sets the interval for aging the pet
-const t = setInterval(agePet, 3000)
+const time = setInterval(agePet, 3000)
 
 // function that evolves the pet
-function levelCheck(pet){
-  if(pet.petType === 1){
-    if(pet.evoPoints > 10){
-      document.getElementById("pet-model").src = `/pet-models/cthulhu/cthulhu-evo-3.svg`
-    }else if(pet.evoPoints <= 10 && pet.evoPoints > 5){
-      document.getElementById("pet-model").src = `/pet-models/cthulhu/cthulhu-evo-2.svg`
-    }else{
-      document.getElementById("pet-model").src = `/pet-models/cthulhu/cthulhu-evo-1.svg`
+function levelCheck(pet) {
+    if (pet.petType === 1) {
+        if (pet.evoPoints > 10) {
+            document.getElementById(
+                "pet-model"
+            ).src = `/pet-models/cthulhu/cthulhu-evo-3.svg`
+        } else if (pet.evoPoints <= 10 && pet.evoPoints > 5) {
+            document.getElementById(
+                "pet-model"
+            ).src = `/pet-models/cthulhu/cthulhu-evo-2.svg`
+        } else {
+            document.getElementById(
+                "pet-model"
+            ).src = `/pet-models/cthulhu/cthulhu-evo-1.svg`
+        }
+    } else if (pet.petType === 2) {
+        if (pet.evoPoints > 10) {
+            document.getElementById(
+                "pet-model"
+            ).src = `/pet-models/azathoth/azathoth-evo-3.svg`
+        } else if (pet.evoPoints <= 10 && pet.evoPoints > 5) {
+            document.getElementById(
+                "pet-model"
+            ).src = `/pet-models/azathoth/azathoth-evo-2.svg`
+        } else {
+            document.getElementById(
+                "pet-model"
+            ).src = `/pet-models/azathoth/azathoth-evo-1.svg`
+        }
     }
-  }else if(pet.petType === 2){
-    if(pet.evoPoints > 10){
-      document.getElementById("pet-model").src = `/pet-models/azathoth/azathoth-evo-3.svg`
-    }else if(pet.evoPoints <= 10 && pet.evoPoints > 5){
-      document.getElementById("pet-model").src = `/pet-models/azathoth/azathoth-evo-2.svg`
-    }else {
-      document.getElementById("pet-model").src = `/pet-models/azathoth/azathoth-evo-1.svg`
-    }
-  }
 }
 
 // age pet function that decreases the statuses of the pet and adds evo points
@@ -150,13 +162,13 @@ function Pet() {
 
     return (
         <div>
-          {/* if the data has not loaded, display the loading screen */}
+            {/* if the data has not loaded, display the loading screen */}
             {loading ? (
                 <div className="loader-container">
                     <div className="spinner"></div>
                 </div>
             ) : (
-              // when the data loads it displays the chosen pet
+                // when the data loads it displays the chosen pet
                 <div>
                     {/* this part sees if the user has a pet, if it does, display it, otherwise let user pick a pet with the PetPicker.js component */}
                     {localStorage.getItem("userPet").toString() === "null" ? (
@@ -166,7 +178,7 @@ function Pet() {
                     ) : (
                         <container className="pet-container">
                             <Link to="/">
-                              {/* logout button that brings you back to the HomePage.js */}
+                                {/* logout button that brings you back to the HomePage.js */}
                                 <button
                                     className="logout-button"
                                     onClick={(e) => {
