@@ -18,41 +18,53 @@ if (!localStorage.getItem("userPet")) {
     localStorage.setItem("userPet", getPet())
 }
 
-let userPetType
+// variable used for manipulating the users pet object
 let newPetObj
 
 // sets the interval for aging the pet
-const time = setInterval(agePet, 3000)
+const time = setInterval(agePet, 1000)
 
 // function that evolves the pet
-function levelCheck(pet) {
+async function levelCheck(pet) {
     if (pet.petType === 1) {
         if (pet.evoPoints > 10) {
             document.getElementById(
                 "pet-model"
             ).src = `/pet-models/cthulhu/cthulhu-evo-3.svg`
+            document.getElementById('pet-model').style.width = "53%"
+            document.getElementById('pet-model').style.marginLeft = "30%"
         } else if (pet.evoPoints <= 10 && pet.evoPoints > 5) {
             document.getElementById(
                 "pet-model"
             ).src = `/pet-models/cthulhu/cthulhu-evo-2.svg`
+            document.getElementById('pet-model').style.width = "30%"
+            document.getElementById('pet-model').style.marginLeft = "40%"
         } else {
             document.getElementById(
                 "pet-model"
             ).src = `/pet-models/cthulhu/cthulhu-evo-1.svg`
+            document.getElementById('pet-model').style.width = "10%"
+            document.getElementById('pet-model').style.marginLeft = "50%"
         }
     } else if (pet.petType === 2) {
         if (pet.evoPoints > 10) {
             document.getElementById(
                 "pet-model"
             ).src = `/pet-models/azathoth/azathoth-evo-3.svg`
+            document.getElementById('pet-model').style.width = "53%"
+            document.getElementById('pet-model').style.marginLeft = "30%"
         } else if (pet.evoPoints <= 10 && pet.evoPoints > 5) {
             document.getElementById(
                 "pet-model"
             ).src = `/pet-models/azathoth/azathoth-evo-2.svg`
+            document.getElementById('pet-model').style.width = "30%"
+            document.getElementById('pet-model').style.marginLeft = "40%"
         } else {
             document.getElementById(
                 "pet-model"
             ).src = `/pet-models/azathoth/azathoth-evo-1.svg`
+            document.getElementById('pet-model').style.width = "10%"
+            document.getElementById('pet-model').style.marginLeft = "50%"
         }
     }
 }
@@ -62,36 +74,55 @@ function agePet() {
     if (localStorage.getItem("userPet").toString() !== "null") {
         console.log("decrementing pet")
         newPetObj = JSON.parse(localStorage.getItem("userPet"))
-        if (newPetObj.hunger > 0) {
-            newPetObj.hunger--
-            document.getElementById(
-                "pet-hunger"
-            ).innerHTML = `HUNGER: ${newPetObj.hunger}%`
+        if(document.getElementById("pet-model")){
+            if(newPetObj.health === 0){
+                // death
+            }else {
+                if(newPetObj.hunger === 0 && newPetObj.sleep === 0 && newPetObj.happiness === 0){
+                    newPetObj.health--
+                    document.getElementById(
+                        "pet-health"
+                    ).innerHTML = `HEALTH: ${newPetObj.health}%`
+                }else {
+                    if(newPetObj.health < 100){
+                        newPetObj.health++
+                        document.getElementById(
+                            "pet-health"
+                        ).innerHTML = `HEALTH: ${newPetObj.health}%`
+                    }
+                }
+                if (newPetObj.hunger > 0) {
+                    newPetObj.hunger--
+                    document.getElementById(
+                        "pet-hunger"
+                    ).innerHTML = `HUNGER: ${newPetObj.hunger}%`
+                }
+                if (newPetObj.happiness > 0) {
+                    newPetObj.happiness--
+                    document.getElementById(
+                        "pet-happiness"
+                    ).innerHTML = `HAPPINESS: ${newPetObj.happiness}%`
+                }
+                if (newPetObj.sleep > 0) {
+                    newPetObj.sleep--
+                    document.getElementById(
+                        "pet-sleep"
+                    ).innerHTML = `SLEEP: ${newPetObj.sleep}%`
+                }
+                if (
+                    newPetObj.sleep > 0 &&
+                    newPetObj.hunger > 0 &&
+                    newPetObj.happiness > 0
+                ) {
+                    newPetObj.evoPoints++
+                    document.getElementById(
+                        "evo-points-span"
+                    ).innerHTML = `EVOLUTION POINTS: ${newPetObj.evoPoints}`
+                    levelCheck(newPetObj)
+                }
+                localStorage.setItem("userPet", JSON.stringify(newPetObj))
         }
-        if (newPetObj.happiness > 0) {
-            newPetObj.happiness--
-            document.getElementById(
-                "pet-happiness"
-            ).innerHTML = `HAPPINESS: ${newPetObj.happiness}%`
         }
-        if (newPetObj.sleep > 0) {
-            newPetObj.sleep--
-            document.getElementById(
-                "pet-sleep"
-            ).innerHTML = `SLEEP: ${newPetObj.sleep}%`
-        }
-        if (
-            newPetObj.sleep > 0 &&
-            newPetObj.hunger > 0 &&
-            newPetObj.happiness > 0
-        ) {
-            newPetObj.evoPoints++
-            document.getElementById(
-                "evo-points-span"
-            ).innerHTML = `EVOLUTION POINTS: ${newPetObj.evoPoints}`
-            levelCheck(newPetObj)
-        }
-        localStorage.setItem("userPet", JSON.stringify(newPetObj))
     }
 }
 
@@ -131,8 +162,15 @@ function feedPet() {
     }
 }
 
+function displayAsleep() {
+    document.getElementById("asleep-page").style.display = "flex"
+}
+
 // function that increases pet sleep
-function sleepPet() {
+async function sleepPet() {
+    const sleepsleep = await setInterval(displayAsleep, 3000)
+    clearInterval(sleepsleep)
+    document.getElementById("asleep-page").style.display = "none"
     if (localStorage.getItem("userPet").toString() !== "null") {
         newPetObj = JSON.parse(localStorage.getItem("userPet"))
         console.log("putting pet to sleep")
@@ -149,6 +187,7 @@ function sleepPet() {
     }
 }
 
+
 // main pet function
 function Pet() {
     // loading screen for fetching to the backend
@@ -157,7 +196,7 @@ function Pet() {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
-        }, 2000)
+        }, 3000)
     }, [])
 
     return (
@@ -176,7 +215,9 @@ function Pet() {
                             <PetPicker />
                         </div>
                     ) : (
+                        
                         <container className="pet-container">
+                            <div id="asleep-page"></div>
                             <Link to="/">
                                 {/* logout button that brings you back to the HomePage.js */}
                                 <button
@@ -244,6 +285,18 @@ function Pet() {
                                         JSON.parse(
                                             localStorage.getItem("userPet")
                                         ).sleep
+                                    }
+                                    %
+                                </span>
+                                <span
+                                    className="pet-status-span health-span"
+                                    id="pet-health"
+                                >
+                                    HEALTH:{" "}
+                                    {
+                                        JSON.parse(
+                                            localStorage.getItem("userPet")
+                                        ).health
                                     }
                                     %
                                 </span>

@@ -5,9 +5,10 @@ function userPet(petType) {
     return {
         petType: petType,
         evoPoints: 0,
-        hunger: 100,
-        happiness: 100,
-        sleep: 100,
+        hunger: 10,
+        happiness: 10,
+        sleep: 10,
+        health: 100
     }
 }
 

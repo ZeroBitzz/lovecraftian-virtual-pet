@@ -3,6 +3,12 @@ import { Link } from "react-router-dom"
 
 // todo: make breakpoint to split horizontally for mobile
 // todo: make forgot password option if have time
+let usernames = ['zero']
+let passwords = ['123']
+localStorage.setItem("usernames", usernames)
+localStorage.setItem("passwords", passwords)
+
+console.log(localStorage.getItem("usernames") + ' ' + localStorage.getItem("passwords"))
 
 function HomePage() {
     return (
